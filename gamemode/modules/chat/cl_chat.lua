@@ -8,10 +8,11 @@ end
 Add a message to chat
 ---------------------------------------------------------------------------]]
 local function AddToChat(bits)
-    local col1 = Color(net.ReadUInt(8), net.ReadUInt(8), net.ReadUInt(8))
+    local col1 = Color(241, 172, 101)
 
     local prefixText = net.ReadString()
     local ply = net.ReadEntity()
+	local name = ply:Nick()
     ply = IsValid(ply) and ply or LocalPlayer()
 
     if not IsValid(ply) then return end
@@ -21,7 +22,7 @@ local function AddToChat(bits)
         prefixText = prefixText ~= "" and prefixText or ply:SteamName()
     end
 
-    local col2 = Color(net.ReadUInt(8), net.ReadUInt(8), net.ReadUInt(8))
+    local col2 = Color(255, 255, 151)
 
     local text = net.ReadString()
     local shouldShow
@@ -31,7 +32,7 @@ local function AddToChat(bits)
         end
 
         if shouldShow ~= true then
-            chat.AddNonParsedText(col1, prefixText, col2, ": " .. text)
+            chat.AddNonParsedText(col1, name, col2, ":" .. text)
         end
     else
         shouldShow = hook.Call("ChatText", GAMEMODE, "0", prefixText, prefixText, "darkrp")
