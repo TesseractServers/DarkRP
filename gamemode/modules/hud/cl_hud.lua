@@ -379,6 +379,7 @@ local function DisplayNotify(msg)
     local txt = msg:ReadString()
     local class = msg:ReadShort()
     GAMEMODE:AddNotify(txt, class, msg:ReadLong())
+	print(class) -- DEBUG
 
     if class == NOTIFY_GENERIC then
         surface.PlaySound("ambient/water/drip2.wav")
