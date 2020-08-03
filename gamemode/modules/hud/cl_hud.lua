@@ -379,21 +379,6 @@ local function DisplayNotify(msg)
     local txt = msg:ReadString()
     local class = msg:ReadShort()
     GAMEMODE:AddNotify(txt, class, msg:ReadLong())
-	print(class) -- DEBUG
-
-    if class == NOTIFY_GENERIC then
-        surface.PlaySound("ambient/water/drip2.wav")
-    elseif class == NOTIFY_ERROR then
-        surface.PlaySound("buttons/button10.wav")
-    elseif class == NOTIFY_UNDO then
-        surface.PlaySound("buttons/button17.wav")
-    elseif class == NOTIFY_HINT then
-        surface.PlaySound("buttons/bell1.wav")
-    elseif class == NOTIFY_CLEANUP then
-        surface.PlaySound("buttons/button15.wav")
-    else
-    	surface.PlaySound("buttons/lightswitch2.wav")
-    end
 
     -- Log to client console
     MsgC(Color(255, 20, 20, 255), "[DarkRP] ", Color(200, 200, 200, 255), txt, "\n")
