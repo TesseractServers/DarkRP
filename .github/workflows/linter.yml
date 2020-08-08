@@ -17,4 +17,4 @@ jobs:
         uses: actions/checkout@v2
       - name: Linting
         id: action-glua-lint
-        uses: TASSIA710/action-glua-lint@v0.2.2
+        uses: TASSIA710/action-glua-lint@v1.1
