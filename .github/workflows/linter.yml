@@ -9,7 +9,7 @@ name: Linter
 
 jobs:
   lua_lint:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     name: GLua Linter
     steps:
       - name: Checkout
