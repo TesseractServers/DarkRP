@@ -26,7 +26,7 @@ function meta:payDay()
             if amount == 0 or not amount then
                 if not suppress then DarkRP.notify(self, 4, 4, message or DarkRP.getPhrase("payday_unemployed")) end
             else
-                self:addMoney(amount)
+                self:GiveMoney(amount, "Salary")
                 if not suppress then DarkRP.notify(self, 4, 4, message or DarkRP.getPhrase("payday_message", DarkRP.formatMoney(amount))) end
             end
         end)
