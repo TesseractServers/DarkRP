@@ -12,13 +12,13 @@ local function AddToChat(bits)
 
     local prefixText = net.ReadString()
     local ply = net.ReadEntity()
-	local name = ply:Name()
+	local name = ply:Nick()
     ply = IsValid(ply) and ply or LocalPlayer()
 
     if not IsValid(ply) then return end
 
     if prefixText == "" or not prefixText then
-        prefixText = ply:Name()
+        prefixText = ply:Nick()
         prefixText = prefixText ~= "" and prefixText or ply:SteamName()
     end
 
