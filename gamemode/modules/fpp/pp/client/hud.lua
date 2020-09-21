@@ -148,6 +148,7 @@ local function FilterEntityTable(t)
 end
 
 local function HUDPaint()
+    if LocalPlayer():InVehicle() then return end
 
     local i = 0
     for k, v in pairs(HUDNotes) do
