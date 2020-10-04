@@ -158,6 +158,8 @@ local boxBackground = Color(0, 0, 0, 110)
 local canTouchTextColor = Color(0, 255, 0, 255)
 local cannotTouchTextColor = Color(255, 0, 0, 255)
 local function HUDPaint()
+    if LocalPlayer():InVehicle() then return end
+
     local i = 0
     for k, v in pairs(HUDNotes) do
         if v ~= 0 then

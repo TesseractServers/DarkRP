@@ -95,7 +95,6 @@ function meta:changeTeam(t, force, suppressNotification, ignoreMaxMembers)
     end
     self:updateJob(TEAM.name)
     self:setSelfDarkRPVar("salary", TEAM.salary)
-    notifyAll(0, 4, DarkRP.getPhrase("job_has_become", self:Nick(), TEAM.name))
 
 
     if self:getDarkRPVar("HasGunlicense") and GAMEMODE.Config.revokeLicenseOnJobChange then
@@ -253,7 +252,6 @@ local function ChangeJob(ply, args)
     end
 
     local job = replace or args
-    DarkRP.notifyAll(2, 4, DarkRP.getPhrase("job_has_become", ply:Nick(), job))
     ply:updateJob(job)
     return ""
 end
@@ -276,9 +274,6 @@ local function FinishDemote(vote, choice)
         end
 
         hook.Call("onPlayerDemoted", nil, vote.info.source, target, vote.info.reason)
-        DarkRP.notifyAll(0, 4, DarkRP.getPhrase("demoted", target:Nick()))
-    else
-        DarkRP.notifyAll(1, 4, DarkRP.getPhrase("demoted_not", target:Nick()))
     end
 end
 

@@ -3,19 +3,17 @@ functions
 ---------------------------------------------------------------------------]]
 local meta = FindMetaTable("Player")
 function meta:addMoney(amount)
-    if not amount then return false end
-    local total = self:getDarkRPVar("money") + math.floor(amount)
-    total = hook.Call("playerWalletChanged", GAMEMODE, self, amount, self:getDarkRPVar("money")) or total
-
-    self:setDarkRPVar("money", total)
-
-    if self.DarkRPUnInitialized then return end
-    DarkRP.storeMoney(self, total)
+	Log.Warning("Deprecated: Consider using Player:GiveMoney, Player:TakeMoney or Player:TransferMoney instead.")
+	if amount >= 0 then
+		self:GiveMoney(amount, "Unknown")
+	else
+		self:TakeMoney(-amount, "Unknown")
+	end
 end
 
 function DarkRP.payPlayer(ply1, ply2, amount)
-    ply1:addMoney(-amount)
-    ply2:addMoney(amount)
+	Log.Warning("Deprecated: Consider using Player:TransferMoney instead.")
+	ply1:TransferMoney(amount, "Unknown", ply2)
 end
 
 function meta:payDay()
@@ -28,7 +26,7 @@ function meta:payDay()
             if amount == 0 or not amount then
                 if not suppress then DarkRP.notify(self, 4, 4, message or DarkRP.getPhrase("payday_unemployed")) end
             else
-                self:addMoney(amount)
+                self:GiveMoney(amount, "Salary")
                 if not suppress then DarkRP.notify(self, 4, 4, message or DarkRP.getPhrase("payday_message", DarkRP.formatMoney(amount))) end
             end
         end)
