@@ -430,7 +430,7 @@ function DarkRP.CreateTesseractJob(name, data, id)
     if not valid then DarkRP.error(string.format("Corrupt team: %s!\n%s", CustomTeam.name or "", err), 2, hints) end
 
     jobCount = jobCount + 1
-    CustomTeam.team = jobCount
+    CustomTeam.team = id
 
     CustomTeam.salary = math.floor(CustomTeam.salary)
 
