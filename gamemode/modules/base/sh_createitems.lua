@@ -408,7 +408,67 @@ plyMeta.getJobTable = function(ply)
     end
     return tbl
 end
+
 local jobCount = 0
+
+--- Creates a new job with the given name, data and constant ID.
+-- @param name [string] - the job name
+-- @param data [table] - the job data
+-- @param id [number] - the constant job ID
+function DarkRP.CreateTesseractJob(name, data, id)
+    local CustomTeam = data
+    CustomTeam.name = name
+    CustomTeam.default = DarkRP.DARKRP_LOADING
+
+    -- Disabled job?
+    if DarkRP.DARKRP_LOADING and DarkRP.disabledDefaults["jobs"][CustomTeam.command] then
+        return
+    end
+
+    -- Validate job
+    local valid, err, hints = DarkRP.validateJob(CustomTeam)
+    if not valid then DarkRP.error(string.format("Corrupt team: %s!\n%s", CustomTeam.name or "", err), 2, hints) end
+
+    jobCount = jobCount + 1
+    CustomTeam.team = jobCount
+
+    CustomTeam.salary = math.floor(CustomTeam.salary)
+
+    CustomTeam.customCheck           = CustomTeam.customCheck           and fp{DarkRP.simplerrRun, CustomTeam.customCheck}
+    CustomTeam.CustomCheckFailMsg    = isfunction(CustomTeam.CustomCheckFailMsg) and fp{DarkRP.simplerrRun, CustomTeam.CustomCheckFailMsg} or CustomTeam.CustomCheckFailMsg
+    CustomTeam.CanPlayerSuicide      = CustomTeam.CanPlayerSuicide      and fp{DarkRP.simplerrRun, CustomTeam.CanPlayerSuicide}
+    CustomTeam.PlayerCanPickupWeapon = CustomTeam.PlayerCanPickupWeapon and fp{DarkRP.simplerrRun, CustomTeam.PlayerCanPickupWeapon}
+    CustomTeam.PlayerDeath           = CustomTeam.PlayerDeath           and fp{DarkRP.simplerrRun, CustomTeam.PlayerDeath}
+    CustomTeam.PlayerLoadout         = CustomTeam.PlayerLoadout         and fp{DarkRP.simplerrRun, CustomTeam.PlayerLoadout}
+    CustomTeam.PlayerSelectSpawn     = CustomTeam.PlayerSelectSpawn     and fp{DarkRP.simplerrRun, CustomTeam.PlayerSelectSpawn}
+    CustomTeam.PlayerSetModel        = CustomTeam.PlayerSetModel        and fp{DarkRP.simplerrRun, CustomTeam.PlayerSetModel}
+    CustomTeam.PlayerSpawn           = CustomTeam.PlayerSpawn           and fp{DarkRP.simplerrRun, CustomTeam.PlayerSpawn}
+    CustomTeam.PlayerSpawnProp       = CustomTeam.PlayerSpawnProp       and fp{DarkRP.simplerrRun, CustomTeam.PlayerSpawnProp}
+    CustomTeam.RequiresVote          = CustomTeam.RequiresVote          and fp{DarkRP.simplerrRun, CustomTeam.RequiresVote}
+    CustomTeam.ShowSpare1            = CustomTeam.ShowSpare1            and fp{DarkRP.simplerrRun, CustomTeam.ShowSpare1}
+    CustomTeam.ShowSpare2            = CustomTeam.ShowSpare2            and fp{DarkRP.simplerrRun, CustomTeam.ShowSpare2}
+    CustomTeam.canStartVote          = CustomTeam.canStartVote          and fp{DarkRP.simplerrRun, CustomTeam.canStartVote}
+
+    if not (GM or GAMEMODE):CustomObjFitsMap(CustomTeam) then return end
+
+    jobByCmd[CustomTeam.command] = table.insert(RPExtraTeams, CustomTeam)
+    DarkRP.addToCategory(CustomTeam, "jobs", CustomTeam.category)
+    team.SetUp(id, name, CustomTeam.color)
+
+    timer.Simple(0, function()
+        declareTeamCommands(CustomTeam)
+        addTeamCommands(CustomTeam, CustomTeam.max)
+    end)
+
+    -- Precache model here. Not right before the job change is done
+    if istable(CustomTeam.model) then
+        for _, v in pairs(CustomTeam.model) do util.PrecacheModel(v) end
+    else
+        util.PrecacheModel(CustomTeam.model)
+    end
+    return id
+end
+
 function DarkRP.createJob(Name, colorOrTable, model, Description, Weapons, command, maximum_amount_of_this_class, Salary, admin, Vote, Haslicense, NeedToChangeFrom, CustomCheck)
     local tableSyntaxUsed = not IsColor(colorOrTable)
 
