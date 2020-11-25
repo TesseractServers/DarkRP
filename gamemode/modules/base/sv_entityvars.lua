@@ -32,13 +32,6 @@ end
 Set a player's DarkRPVar
 ---------------------------------------------------------------------------]]
 function meta:setDarkRPVar(var, value, target)
-	print("value:")
-    print(value)
-    print("----")
-    print("var:")
-    print(var)
-    print("----")
-
     target = target or player.GetAll()
 
     if value == nil then return self:removeDarkRPVar(var, target) end
