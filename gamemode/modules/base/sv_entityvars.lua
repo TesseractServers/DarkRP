@@ -41,6 +41,8 @@ function meta:setDarkRPVar(var, value, target)
     vars = vars or {}
     vars[var] = value
 
+    print("value:")
+    print(value)
     net.Start("DarkRP_PlayerVar")
         net.WriteUInt(self:UserID(), 16)
         DarkRP.writeNetDarkRPVar(var, value)
