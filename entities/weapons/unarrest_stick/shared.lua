@@ -1,3 +1,5 @@
+/*
+
 AddCSLuaFile()
 
 if CLIENT then
@@ -105,3 +107,4 @@ function SWEP:startDarkRPCommand(usrcmd)
         self.Switched = false
     end
 end
+*/

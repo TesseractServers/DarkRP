@@ -1,3 +1,9 @@
+--[===[
+	For TesseractServers devs - this baton is shit, we want to use something cooler and better that fits into our gamemode
+	see darkrpmodification/lua/weapons/arrest_stick
+]===]
+
+/*
 AddCSLuaFile()
 
 if CLIENT then
@@ -12,9 +18,9 @@ SWEP.IsDarkRPArrestStick = true
 
 SWEP.PrintName = "Arrest Baton"
 SWEP.Spawnable = true
-SWEP.Category = "DarkRP (Utility)"
+SWEP.Category = "Tesseract Servers"
 
-SWEP.StickColor = Color(255, 0, 0)
+--SWEP.StickColor = Color(255, 0, 0)
 
 SWEP.Switched = true
 
@@ -137,3 +143,4 @@ function SWEP:startDarkRPCommand(usrcmd)
         self.Switched = false
     end
 end
+*/
