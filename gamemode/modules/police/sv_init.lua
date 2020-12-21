@@ -93,7 +93,9 @@ function plyMeta:unWanted(actor)
     end
 end
 
+/*
 function plyMeta:arrest(time, arrester)
+	/*
     time = time or GAMEMODE.Config.jailtimer or 120
 
     hook.Call("playerArrested", DarkRP.hooks, self, time, arrester)
@@ -106,7 +108,7 @@ function plyMeta:arrest(time, arrester)
         self:Spawn()
     end
 end
-
+*/
 function plyMeta:unArrest(unarrester)
     if not self:isArrested() then return end
 
