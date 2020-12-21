@@ -70,7 +70,7 @@ function SWEP:Initialize()
         ["$envmaptint"] = "[ .5 .5 .5 ]",
         ["$selfillum"] = 0,
         ["$model"] = 1
-    }):SetVector("$color2", self.StickColor:ToVector())
+    })
 
     stunstickMaterials[materialName] = true
 end
