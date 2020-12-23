@@ -1,38 +1,6 @@
 --[[---------------------------------------------------------
 Talking
  ---------------------------------------------------------]]
-local function PM(ply, args)
-    local namepos = string.find(args, " ")
-    if not namepos then
-        DarkRP.notify(ply, 1, 4, DarkRP.getPhrase("invalid_x", DarkRP.getPhrase("arguments"), ""))
-        return ""
-    end
-
-    local name = string.sub(args, 1, namepos - 1)
-    local msg = string.sub(args, namepos + 1)
-
-    if msg == "" then
-        DarkRP.notify(ply, 1, 4, DarkRP.getPhrase("invalid_x", DarkRP.getPhrase("arguments"), ""))
-        return ""
-    end
-
-    local target = DarkRP.findPlayer(name)
-    if target == ply then return "" end
-
-    if target then
-        local col = team.GetColor(ply:Team())
-        local pname = ply:Nick()
-        local col2 = Color(255, 255, 255, 255)
-        DarkRP.talkToPerson(target, col, "(PM) " .. pname, col2, msg, ply)
-        DarkRP.talkToPerson(ply, col, "(PM) " .. pname, col2, msg, ply)
-    else
-        DarkRP.notify(ply, 1, 4, DarkRP.getPhrase("could_not_find", tostring(name)))
-    end
-
-    return ""
-end
-DarkRP.defineChatCommand("pm", PM, 1.5)
-
 local function Whisper(ply, args)
     local DoSay = function(text)
         if text == "" then
