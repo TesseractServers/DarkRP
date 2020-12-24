@@ -210,7 +210,7 @@ function meta:setRPName(name, firstRun)
             end
         else
             if not firstRun then -- Don't save the steam name in the database
-                DarkRP.notifyAll(2, 6, DarkRP.getPhrase("rpname_changed", self:SteamName(), name))
+                --DarkRP.notifyAll(2, 6, DarkRP.getPhrase("rpname_changed", self:SteamName(), name))
                 DarkRP.storeRPName(self, name)
             end
         end
