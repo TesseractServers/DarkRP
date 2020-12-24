@@ -113,6 +113,7 @@ local function SayThroughRadio(ply,args)
 end
 DarkRP.defineChatCommand("radio", SayThroughRadio, 1.5)
 
+/*
 local function GroupMsg(ply, args)
     local DoSay = function(text)
         if text == "" then
@@ -148,6 +149,7 @@ local function GroupMsg(ply, args)
     return args, DoSay
 end
 DarkRP.defineChatCommand("g", GroupMsg, 0)
+*/
 
 -- here's the new easter egg. Easier to find, more subtle, doesn't only credit FPtje and unib5
 -- WARNING: DO NOT EDIT THIS
