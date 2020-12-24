@@ -69,12 +69,6 @@ DarkRP.getIncompleteChatCommands = fn.Curry(fn.Filter, 3)(fn.Compose{fn.Not, che
 Chat commands
 ---------------------------------------------------------------------------]]
 DarkRP.declareChatCommand{
-    command = "pm",
-    description = "Send a private message to someone.",
-    delay = 1.5
-}
-
-DarkRP.declareChatCommand{
     command = "w",
     description = "Say something in whisper voice.",
     delay = 1.5
