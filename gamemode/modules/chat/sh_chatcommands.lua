@@ -112,24 +112,6 @@ DarkRP.declareChatCommand{
 }
 
 DarkRP.declareChatCommand{
-    command = "channel",
-    description = "Tune into a radio channel.",
-    delay = 1.5
-}
-
-DarkRP.declareChatCommand{
-    command = "radio",
-    description = "Say something through the radio.",
-    delay = 1.5
-}
-
-DarkRP.declareChatCommand{
-    command = "g",
-    description = "Group chat.",
-    delay = 1.5
-}
-
-DarkRP.declareChatCommand{
     command = "credits",
     description = "Send the DarkRP credits to someone.",
     delay = 1.5
